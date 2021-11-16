@@ -41,30 +41,26 @@ document.querySelector("#mute").addEventListener("click", function() {
 });
 
 document.querySelector("#skip").addEventListener("click", function() {
-	if (video.currentTime < video.duration - 15) {
+	if (video.currentTime + 15 > video.duration) {
+		video.currentTime = 0
+	} else {
 		video.currentTime += 15
 	}
-	else {
-		video.currentTime = 0
-		console.log("start from 0")
-	}
-	console.log(video.duration)
-	console.log("Current Location" + video.currentTime)
-	video.play()
+	console.log("Current video time is: " + video.currentTime);
+	video.play();
 });
 
 document.querySelector("#slider").addEventListener("click", function() {
-	console.log(this.value);	
-	document.querySelector("#volume").innerHTML = this.value + "%"
-	video.volume = (this.value/100)	
+	video.volume = this.value / 100;
+	console.log("The current video volume is " + video.volume);
+	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 });
-
 document.querySelector("#vintage").addEventListener("click", function() {
-	console.log("old school")
-	video.classList.add("oldSchool")
+	video.classList.add("oldSchool");
+	console.log("Video style set to 'Old School'");
 });
 
 document.querySelector("#orig").addEventListener("click", function() {
-	console.log("orginal")
-	video.classList.remove("oldSchool")
+	video.classList.remove("oldSchool");
+	console.log("Video style set to 'Original'");
 });
